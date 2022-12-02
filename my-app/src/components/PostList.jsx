@@ -1,6 +1,13 @@
 import React from "react";
 import PostItem from "./PostItem";
 
+/*
+  All components re-render after:
+    - changing state
+    - changing props
+    - changes in father-component
+    - changing context
+*/
 const PostList = ({ posts, title, remove }) => {
   return (
     <div>

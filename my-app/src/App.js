@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useCallback, useState } from "react";
 import PostFilter from "./components/PostFilter";
 import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
@@ -26,9 +26,14 @@ const App = () => {
     );
   }, [filter.query, sortedPosts]);
 
-  const createPost = (newPost) => {
+  const createPost = useCallback((newPost) => {
     setPosts([...posts, newPost]);
-  };
+  }, [posts]);
+
+/**TODO:
+ * - rewrite function using useCallback
+ * - learn more about useCallback hook
+ */
 
   const deletePost = (post) => {
     setPosts(posts.filter((p) => p.id !== post.id));

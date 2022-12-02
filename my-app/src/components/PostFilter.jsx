@@ -1,9 +1,14 @@
 import React from "react";
+import { useCallback } from "react";
 
 import CustomInput from "./UI/input/CustomInput";
 import CustomSelect from "./UI/select/CustomSelect";
 
 const PostFilter = ({ filter, setFilter }) => {
+
+  const handleSelectChange = useCallback((selectedSort) =>
+  setFilter({ ...filter, sort: selectedSort }), [setFilter, filter]);
+
   return (
     <div>
       <CustomInput
@@ -13,9 +18,7 @@ const PostFilter = ({ filter, setFilter }) => {
       />
       <CustomSelect
         value={filter.sort}
-        onChange={(selectedSort) =>
-          setFilter({ ...filter, sort: selectedSort })
-        }
+        onChange={handleSelectChange}
         defaultValue="Sort"
         options={[
           { value: "title", name: "By title" },
